@@ -17,3 +17,6 @@ Karol    100Bodov
 Karol    100Bodov
 A    100Bodov
 Aaron    100Bodov
+Karol    100Bodov
+Karol    100Bodov
+Karol    100Bodov
