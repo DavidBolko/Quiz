@@ -16,7 +16,7 @@ using namespace std;
 
 int main()
 {
-    system("mode 800");
+    system("mode 900");
     std::setlocale(LC_ALL, "");
 
     int hra();
