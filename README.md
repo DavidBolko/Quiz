@@ -16,3 +16,7 @@ Author: David Bolko
 
 ## Custom Kritéria:
 -OOP Otázky ✔
+
+##### Čo pravdepodobne nevyužijem:
+-Enum ✘\
+-Pointery ✘
