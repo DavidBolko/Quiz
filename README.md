@@ -1,7 +1,7 @@
 # Quiz
 Polrocna Práca\
 Author: David Bolko\
-Hra je hratelná ✔\
+Hra je hratelná ✔
 
 ## Kriteria:
 -Použitý Cyklus ✔\
@@ -13,7 +13,7 @@ Hra je hratelná ✔\
 -Úprava - výpis v konzoli + Kód Úprava ✔\
 -Načitanie vstupu zo súbora ✔\
 -Uloženie výstupu do súbora ✔\
--Rekurzívne Funkcie (ešte pridám)\
+-Rekurzívne Funkcie (ešte pridám)
 
 ## Custom Kritéria:
 -OOP ✔
