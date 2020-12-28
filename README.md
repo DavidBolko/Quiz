@@ -1,6 +1,7 @@
 # Quiz
-PolrocnaPraca
-Author: David Bolko
+Polrocna Práca\
+Author: David Bolko\
+Hra je hratelná ✔\
 
 ## Kriteria:
 -Použitý Cyklus ✔\
@@ -17,6 +18,3 @@ Author: David Bolko
 ## Custom Kritéria:
 -OOP Otázky ✔
 
-##### Čo pravdepodobne nevyužijem:
--Enum ✘\
--Pointery ✘
