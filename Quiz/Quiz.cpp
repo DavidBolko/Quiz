@@ -1,6 +1,3 @@
-// Quiz.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <stdlib.h>
 #include <chrono>
@@ -10,6 +7,7 @@
 #include <clocale>
 #include<fstream>
 #include <string>
+#include <conio.h>
 #include "Header.h"
 
 using namespace std;
@@ -17,17 +15,17 @@ using namespace std;
 
 int main()
 {
-    system("mode 900");
     std::setlocale(LC_ALL, "");
 
-    int zoznamhracov();
+    void zoznamhracov();
 
-    cout << "___________________________________________________________________" << endl << endl;
-    cout << "                                MILIONÁR" << endl;
-    cout << "                              Vítaj v Hre" << endl;
-    cout << "___________________________________________________________________" << endl << endl;
+    cout << "+-----------------------------------------------------------------+" << endl;
+    cout << "|                                KVIZ                             |" << endl;
+    cout << "|                             Vítaj v Hre                         |" << endl;
+    cout << "+-----------------------------------------------------------------+" << endl << endl;
 
-    cout << "Zmaèkni P na spustenie Hry" << endl;
+    cout << "Zmaèkni H na spustenie Hry" << endl;
+    cout << "Zmaèkni P pre zobrazenie Pravidiel" << endl;
     cout << "Zmaèkni Z pre Zoznam Všetkých Hráèov" << endl;
     cout << "Zmaèkni Q na Ukonèenie Hry" << endl << endl;
     char choice;
@@ -35,9 +33,14 @@ int main()
 
     switch (choice)
     {
-    case 'P':
+    case 'H':
         system("CLS");
         QuizzGame();
+        break;
+
+    case 'P':
+        system("CLS");
+        Rules();
         break;
 
     case 'Z':
@@ -65,7 +68,7 @@ int main()
 
 
 
-int zoznamhracov()
+void zoznamhracov()
 {
     string zoznam;
     ifstream MyFile("zoznamhracov.txt");
@@ -74,13 +77,12 @@ int zoznamhracov()
         cout << zoznam <<endl;
 
     }
-  
- 
-
-
     MyFile.close();
 
-    return 0;
+    cout << "---------------Stiskni èokolvek na návrat do Menu---------------";
+    _getch();
+    main();
+   
 
 }
 

@@ -6,410 +6,529 @@
 #include <cmath>
 #include <cstdio>
 #include <clocale>
+#include <conio.h>
 #include<fstream>
 #include <string>
+#include<ctime>
+#include "Header.h"
+#include "QuestionsLayout.h"
 
 using namespace std;
 
 
+
 void QuizzGame()
 {
-    float financie = 0;
+    std::setlocale(LC_ALL, "");
+
+    srand((unsigned)time(0));
+    //random cisla sa zapisu do pola Asked[] bez opakovania
+    int asked[10] = { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+    for (int i = 0; i < 10; i++)
+    {
+        label:
+        int result = (1+rand() % 10);
+        for (int j = 0; j < 10; j++)
+        {
+            if (asked[j] == result) {
+                goto label;
+            }
+        }
+
+        asked[i] = result;
+    }
+
+
+    //Otazky a odpovede (prepisatelne)
+    QuestionsLayout q1("Co je najvacsie vo vesmire?", 'A', "A - Slnko", "B - Jupiter", "C - Merkúr", "D - Pluto");
+    QuestionsLayout q2("Aku znacku ma Helium v Periodickej Tabulke Prvkov?", 'C', "A - Hc", "B - Ha", "C - He", "D - H");
+    QuestionsLayout q3("Kolko druhov cicavcov pozname?", 'D', "A - 5256", "B - 3586", "C - 8235", "D - 5416");
+    QuestionsLayout q4("Ako sa volá Majitel Spoloènosti SpaceX?", 'D', "A - James Bond ", "B - Adolf Hitler ", "C - Bill Gates", "D - Elon Musk");
+    QuestionsLayout q5("Kolko Štátov je v Europskej únií?", 'B', "A - 25", "B - 27", "C - 32", "D - 40");
+    QuestionsLayout q6("Èim sa preslavil Albert Einstein?", 'B', "A - Objavil Gravitaciu", "B - Teóriou Relativity", "C - Objavil všetky chemické prvky", "D - Vynašiel prvý elektrický motor");
+    QuestionsLayout q7("Ktora planeta je najväèšia v slneènej sústave?", 'C', "A - Slnko", "B - Merkúr", "C - Jupiter", "D - Zem");
+    QuestionsLayout q8("Kto predal prvý komerèný automobil?", 'D', "A - Karl Rahner", "B - Karl Marx", "C - Karl Fabergé", "D - Karl Benz");
+    QuestionsLayout q9("Japonsko je jedna z najviac geologicky a meteorologicky aktívnych zón, Ktore tvrdenie je pravdive?", 'D', "A - Viac ako 200 krát zažijú Tsunami", "B - Viac ako 150 krát uvidia tornado", "C - Vybuchne zhruba 800 sopiek", "D - Zhruba 1500 Zemetrasení Roène");
+    QuestionsLayout q10("Dá sa cestova v èase?", 'C', "A - Nie nedá, iba vo filme", "B - Ano dá elektrickými impulzmi", "C - Ano dá, super Rýchlou cestou vesmírom", "D - Nezmysel ");
+
+    int financie = 0;
+    int count = 1;
     string name;
 
     cout << "Zadaj svoje Meno: ";
     cin >> name;
-    system("CLS");
 
 
-    //KOLO 1 ZACIATOK HRY ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    cout << "-------------------KOLO 1.-------------------" << endl << endl;
-    char answer;
-    cout << "Ako sa nazyva najvacsie suchozemske zviera na svete?" << endl;
-    cout << "Po 'A' Slon Africky" << endl;
-    cout << "Po 'B' Vraskavec Obrovsky" << endl;
-    cout << "Po 'C' Zirafa" << endl;
-    cout << "Po 'D' Pstros dvojprsty" << endl << endl;
-    cout << "Zadaj Odpoved: ";
-
-
-    bool again = true;
-    while (again) {
-        cin >> answer;
-
-        switch (answer)
-        {
-        case 'A':
-            cout << "Vyborne, spravna odpoved" << endl;
-            financie += 100;
-            cout << "Vase nove skore: " << financie << endl;
-            again = false;
-
-            break;
-        case 'B':
-            cout << "Zla odpoved, vela stastia v dalsej" << endl;
-            cout << "Vase sucasne skore: " << financie << endl;
-            again = false;
-            break;
-
-        case 'C':
-            cout << "Zla odpoved, vela stastia v dalsej" << endl;
-            cout << "Vase sucasne skore: " << financie << endl;
-            again = false;
-            break;
-
-        case 'D':
-            cout << "Zla odpoved, vela stastia v dalsej" << endl;
-            cout << "Vase sucasne skore: " << financie << endl;
-            again = false;
-            break;
-
-        default:
-            cout << "Nezadali ste 1 zo 4 odpovedi" << endl;
-            cout << "Zadajte Odpoved Znova: " << endl;
-            bool again = true;
-            break;
-
-
-
-
-
-
-        }
-
-    }
-
-
-    //Zápis mena a poèet financí a stupeò výhry do súboru.
-    ofstream MyFile("zoznamhracov.txt", std::ios_base::app);
-    MyFile << name << "    " << financie << "Bodov" << endl;
-    MyFile.close();
-
-
-    //LOADING a VYMAZANIE KONZOLE
-    cout << endl << endl << endl;
-    cout << "LOADING KOLO2 ";
-    for (int i = 0; i < 5; i++)
+    //---------------Zaciatok Hry------------------
+    for(int i : asked)
     {
-        std::this_thread::sleep_for(0.3s);
-        cout << "-";
-
-
-    }
-    system("CLS");
-
-    cout << "Meno Hráèa: " << name << endl;
-    cout << "Vase Body: " << financie << endl << endl;
-
-    //KOLO 2 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    cout << "-------------------KOLO 2.-------------------" << endl;
-    cout << "Ako sa nazyva chemicky prvok He" << endl;
-    cout << "Po 'A' Hafnium" << endl;
-    cout << "Po 'B' Horcik" << endl;
-    cout << "Po 'C' Helium" << endl;
-    cout << "Po 'D' Hasium" << endl << endl;
-    cout << "Zadaj Odpoved: ";
-    again = true;
-
-    while (again) {
-        cin >> answer;
-        switch (answer)
+        if (count > 1)
         {
-        case 'A':
-            cout << "Zla odpoved, vela stastia v dalsej" << endl;
-            financie -= 20;
-            cout << "Vase sucasne skore: " << financie << endl;
-            again = false;
-            break;
-
-            break;
-        case 'B':
-            cout << "Zla odpoved, vela stastia v dalsej" << endl;
-            financie -= 20;
-            cout << "Vase sucasne skore: " << financie << endl;
-            again = false;
-            break;
-
-        case 'C':
-            cout << "Vyborne, spravna odpoved" << endl;
-            financie += 100;
-            cout << "Vase nove skore: " << financie << endl;
-            again = false;
-            break;
-
-        case 'D':
-            cout << "Zla odpoved, vela stastia v dalsej" << endl;
-            cout << "Vase sucasne skore: " << financie << endl;
-            financie -= 20;
-            again = false;
-            break;
-            break;
-
-        default:
-            cout << "Nezadali ste 1 zo 4 odpovedi" << endl;
-            cout << "Zadajte Odpoved Znova: " << endl;
-            bool again = true;
-            break;
-
-
-
-        }
-
-
-    }
-
-
-
-    //LOADING a VYMAZANIE KONZOLE
-    cout << endl << endl << endl;
-    cout << "LOADING KOLO3 ";
-    for (int i = 0; i < 5; i++)
-    {
-        std::this_thread::sleep_for(0.3s);
-        cout << "-";
-    }
-    system("CLS");
-
-
-    cout << "Meno Hráèa: " << name << endl;;
-    cout << "Vase Body: " << financie << endl << endl;
-
-
-
-    //KOLO 3 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    cout << "Kolo 3" << endl;
-    cout << "Kolko cicavcov pozname na svete k roku 2006?" << endl;
-    cout << "Zadaj Odpoved (tolerancia 10%): ";
-    again = true;
-    int answerinput;
-    double tolerance = 0.1;
-
-    while (again) {
-        cin >> answerinput;
-        cin.clear();              //to clear the buffer memory
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-
-
-        switch (answerinput)
-        {
-        case 5416:
-            cout << "Vyborne, spravna odpoved" << endl;
-            cout << "Vase sucasne skore: " << financie << endl;
-            again = false;
-            break;
-        default:
-            if (answerinput != 5416)
+            //LOADING a VYMAZANIE KONZOLE
+            cout << endl;
+            cout << "LOADING" << endl;
+            for (int i = 0; i < 5; i++)
             {
+                std::this_thread::sleep_for(0.3s);
+                cout << "-";
+            }
+        }
+        system("CLS");
 
-                float tolerancenumup = 5416 + (5416 * tolerance); //5957
-                float tolerancenudown = 5416 - (5416 * tolerance); //4874
+        cout << "Otazka " << count << endl;
+        cout << "Meno Hráèa: " << name << endl;
+        cout << "Vase Body: " << financie << endl << endl;
 
-                int wronganswer;
-                wronganswer = answerinput;
+        if (i == 1)
+        {
+            cout << q1.questionName << endl;
+            cout << q1.ans1 << endl;
+            cout << q1.ans2 << endl;
+            cout << q1.ans3 << endl;
+            cout << q1.ans4 << endl;
+            cout << "Odpoved: ";
 
-                if (wronganswer <= tolerancenumup && wronganswer > 5416) //všetky èisla menšie ako tolerancia nahor (5957) ale zaroven väèšie ako 5416(spravná odpoved)
+            char answer;
+            bool again = true;
+
+            while (again)
+            {
+                cin >> answer;
+                if (answer == 'A' || answer == 'C' || answer == 'B' || answer == 'D')
                 {
-                    cout << "Gratulejeme tipol si blízko, dostávaš zníženy poèet financí";
-                    financie += 60;
-                    again = false;
-                }
-                else if (wronganswer >= tolerancenudown && wronganswer < 5416)//všetky èisla väèšie ako tolerancia nadol (4874) ale zaroven menšie ako 5416(spravná odpoved)
-                {
-                    cout << "Gratulejeme tipol si blízko, dostávaš zníženy poèet financí";
-                    financie += 60;
-                    again = false;
-
+                    if (answer == q1.corans)
+                    {
+                        cout << "Spravna odpoved, dostavas 500€"<< endl;
+                        financie += 500;
+                        count++;
+                        again = false;
+                    }
+                    else
+                    {
+                        cout << "Nespravna Odpoved" << endl;
+                        financie -= 350;
+                        count++;
+                        again = false;
+                    }
                 }
                 else
                 {
-                    cout << "Tipol si èíslo za požadovanou toleranciu, prajeme viac štastia v dalšej otázke";
-                    again = false;
-                    financie -= 20;
+                    cout << "Nezadal si jednu zo styroch moznosti, skus to znova: ";
+                    again = true;
                 }
-
             }
-            else {
-                cout << "Nezadal si správny vstup";
-                again = true;
-            }
-            break;
-
-
-
-
-
-
-
-
 
 
         }
 
-
-    }
-
-    //LOADING a VYMAZANIE KONZOLE
-    cout << endl << endl << endl;
-    cout << "LOADING KOLO4 ";
-    for (int i = 0; i < 5; i++)
-    {
-        std::this_thread::sleep_for(0.3s);
-        cout << "-";
-
-
-    }
-    system("CLS");
-
-    cout << "Meno Hráèa: " << name << endl;
-    cout << "Vase Body: " << financie << endl << endl;
-
-    //KOLO 4 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    srand(time_t(2));
-    string znacky[4] = { "BMW", "Volkswagen","Ford", "Renault" };
-    //BMW //VW //Ford //Renault
-    //1916 //1937 //1903 //1898
-    int randomvyber = rand() % 4;
-    tolerance = 0.02f;
-
-    cout << "-------------------KOLO 4.-------------------" << endl;
-    cout << "V ktorom roku bola založená automobilka " << znacky[randomvyber] << endl;
-    cout << "•1916" << endl;
-    cout << "•1937" << endl;
-    cout << "•1903" << endl;
-    cout << "•1898" << endl << endl;
-    cout << "Zadaj Odpoved: ";
-    again = true;
-
-    cout << randomvyber;
-
-    while (again) {
-        cin >> answer;
-        switch (answer)
+        if (i == 2)
         {
-        case '1916':
-            if (randomvyber == 0) //tolerancia 10%
-            {
-                if (answer >= 1916 + (1916 * tolerance) && answer < 1916) //tolerancia 10%
-                {
-                    cout << "Vyborne, spravna odpoved" << endl;
-                    financie = +100;
-                    cout << "Vase nove skore: " << financie << endl;
-                    again = false;
+            cout << q2.questionName << endl;
+            cout << q2.ans1 << endl;
+            cout << q2.ans2 << endl;
+            cout << q2.ans3 << endl;
+            cout << q2.ans4 << endl;
+            cout << "Odpoved: ";
 
-                }
-            }
-            else
-            {
-                cout << "Zla odpoved, vela stastia v dalsej" << endl;
-                cout << "Vase sucasne skore: " << financie << endl;
-                again = false;
-
-
-            }
-            break;
-        case '1937':
-            if (randomvyber == 1) //tolerancia 10%
-            {
-                if (answer >= 1937 + (1937 * tolerance) && answer < 1937) //tolerancia 10%
-                {
-                    cout << "Vyborne, spravna odpoved" << endl;
-                    financie = +100;
-                    cout << "Vase nove skore: " << financie << endl;
-                    again = false;
-
-                }
-            }
-            else
-            {
-                cout << "Zla odpoved, vela stastia v dalsej" << endl;
-                cout << "Vase sucasne skore: " << financie << endl;
-                again = false;
-
-
-            }
-            break;
-        case '1903':
-            if (randomvyber == 2) //tolerancia 10%
-            {
-                if (answer >= 1903 + (1903 * tolerance) && answer < 1903) //tolerancia 10%
-                {
-                    cout << "Vyborne, spravna odpoved" << endl;
-                    financie = +100;
-                    cout << "Vase nove skore: " << financie << endl;
-                    again = false;
-
-                }
-            }
-            else
-            {
-                cout << "Zla odpoved, vela stastia v dalsej" << endl;
-                cout << "Vase sucasne skore: " << financie << endl;
-                again = false;
-
-
-            }
-            break;
-        case '1898':
-            if (randomvyber == 3) //tolerancia 10%
-            {
-                if (answer >= 1898 + (1898 * tolerance) && answer < 1898) //tolerancia 10%
-                {
-                    cout << "Vyborne, spravna odpoved" << endl;
-                    financie = +100;
-                    cout << "Vase nove skore: " << financie << endl;
-                    again = false;
-
-                }
-            }
-            else
-            {
-                cout << "Zla odpoved, vela stastia v dalsej" << endl;
-                cout << "Vase sucasne skore: " << financie << endl;
-                again = false;
-
-
-            }
-            break;
-
-        default:
-            cout << "Nezadali ste 1 zo 4 odpovedi" << endl;
-            cout << "Zadajte Odpoved Znova: " << endl;
+            char answer;
             bool again = true;
-            break;
+
+            while (again)
+            {
+                cin >> answer;
+                if (answer == 'A' || answer == 'C' || answer == 'B' || answer == 'D')
+                {
+                    if (answer == q2.corans)
+                    {
+                        cout << "Spravna odpoved, dostavas 500€" << endl;
+                        financie += 500;
+                        count++;
+                        again = false;
+                    }
+                    else
+                    {
+                        cout << "Nespravna Odpoved" << endl;
+                        financie -= 350;
+                        count++;
+                        again = false;
+                    }
+                }
+                else
+                {
+                    cout << "Nezadal si jednu zo styroch moznosti, skus to znova: ";
+                    again = true;
+                }
+            }
+
+
+        }
+        if (i == 3)
+        {
+            cout << q3.questionName << endl;
+            cout << q3.ans1 << endl;
+            cout << q3.ans2 << endl;
+            cout << q3.ans3 << endl;
+            cout << q3.ans4 << endl;
+            cout << "Odpoved: ";
+
+            char answer;
+            bool again = true;
+
+            while (again)
+            {
+                cin >> answer;
+                if (answer == 'A' || answer == 'C' || answer == 'B' || answer == 'D')
+                {
+                    if (answer == q3.corans)
+                    {
+                        cout << "Spravna odpoved, dostavas 500€" << endl;
+                        financie += 500;
+                        count++;
+                        again = false;
+                    }
+                    else
+                    {
+                        cout << "Nespravna Odpoved" << endl;
+                        financie -= 350;
+                        count++;
+                        again = false;
+                    }
+                }
+                else
+                {
+                    cout << "Nezadal si jednu zo styroch moznosti, skus to znova: ";
+                    again = true;
+                }
+
+            }
 
 
 
         }
+        if (i == 4)
+        {
+            cout << q4.questionName << endl;
+            cout << q4.ans1 << endl;
+            cout << q4.ans2 << endl;
+            cout << q4.ans3 << endl;
+            cout << q4.ans4 << endl;
+            cout << "Odpoved: ";
+
+            char answer;
+            bool again = true;
+
+            while (again)
+            {
+                cin >> answer;
+                if (answer == 'A' || answer == 'C' || answer == 'B' || answer == 'D')
+                {
+                    if (answer == q4.corans)
+                    {
+                        cout << "Spravna odpoved, dostavas 500€" << endl;
+                        financie += 500;
+                        count++;
+                        again = false;
+                    }
+                    else
+                    {
+                        cout << "Nespravna Odpoved" << endl;
+                        financie -= 350;
+                        count++;
+                        again = false;
+                    }
+                }
+                else
+                {
+                    cout << "Nezadal si jednu zo styroch moznosti, skus to znova: ";
+                    again = true;
+                }
+
+            }
 
 
+
+        }
+        if (i == 5)
+        {
+            cout << q5.questionName << endl;
+            cout << q5.ans1 << endl;
+            cout << q5.ans2 << endl;
+            cout << q5.ans3 << endl;
+            cout << q5.ans4 << endl;
+            cout << "Odpoved: ";
+
+            char answer;
+            bool again = true;
+
+            while (again)
+            {
+                cin >> answer;
+                if (answer == 'A' || answer == 'C' || answer == 'B' || answer == 'D')
+                {
+                    if (answer == q5.corans)
+                    {
+                        cout << "Spravna odpoved, dostavas 500€" << endl;
+                        financie += 500;
+                        count++;
+                        again = false;
+                    }
+                    else
+                    {
+                        cout << "Nespravna Odpoved" << endl;
+                        financie -= 350;
+                        count++;
+                        again = false;
+                    }
+                }
+                else
+                {
+                    cout << "Nezadal si jednu zo styroch moznosti, skus to znova: ";
+                    again = true;
+                }
+
+            }
+
+
+
+        }
+        if (i == 6)
+        {
+            cout << q6.questionName << endl;
+            cout << q6.ans1 << endl;
+            cout << q6.ans2 << endl;
+            cout << q6.ans3 << endl;
+            cout << q6.ans4 << endl;
+            cout << "Odpoved: ";
+
+            char answer;
+            bool again = true;
+
+            while (again)
+            {
+                cin >> answer;
+                if (answer == 'A' || answer == 'C' || answer == 'B' || answer == 'D')
+                {
+                    if (answer == q6.corans)
+                    {
+                        cout << "Spravna odpoved, dostavas 500€" << endl;
+                        financie += 500;
+                        count++;
+                        again = false;
+                    }
+                    else
+                    {
+                        cout << "Nespravna Odpoved" << endl;
+                        financie -= 350;
+                        count++;
+                        again = false;
+                    }
+                }
+                else
+                {
+                    cout << "Nezadal si jednu zo styroch moznosti, skus to znova: ";
+                    again = true;
+                }
+
+            }
+
+
+
+        }
+        if (i == 7)
+        {
+            cout << q7.questionName << endl;
+            cout << q7.ans1 << endl;
+            cout << q7.ans2 << endl;
+            cout << q7.ans3 << endl;
+            cout << q7.ans4 << endl;
+            cout << "Odpoved: ";
+
+            char answer;
+            bool again = true;
+
+            while (again)
+            {
+                cin >> answer;
+                if (answer == 'A' || answer == 'C' || answer == 'B' || answer == 'D')
+                {
+                    if (answer == q7.corans)
+                    {
+                        cout << "Spravna odpoved, dostavas 500€" << endl;
+                        financie += 500;
+                        count++;
+                        again = false;
+                    }
+                    else
+                    {
+                        cout << "Nespravna Odpoved" << endl;
+                        financie -= 350;
+                        count++;
+                        again = false;
+                    }
+                }
+                else
+                {
+                    cout << "Nezadal si jednu zo styroch moznosti, skus to znova: ";
+                    again = true;
+                }
+
+            }
+
+
+
+        }
+        if (i == 8)
+        {
+            cout << q8.questionName << endl;
+            cout << q8.ans1 << endl;
+            cout << q8.ans2 << endl;
+            cout << q8.ans3 << endl;
+            cout << q8.ans4 << endl;
+            cout << "Odpoved: ";
+
+            char answer;
+            bool again = true;
+
+            while (again)
+            {
+                cin >> answer;
+                if (answer == 'A' || answer == 'C' || answer == 'B' || answer == 'D')
+                {
+                    if (answer == q8.corans)
+                    {
+                        cout << "Spravna odpoved, dostavas 500€" << endl;
+                        financie += 500;
+                        count++;
+                        again = false;
+                    }
+                    else
+                    {
+                        cout << "Nespravna Odpoved" << endl;
+                        financie -= 350;
+                        count++;
+                        again = false;
+                    }
+                }
+                else
+                {
+                    cout << "Nezadal si jednu zo styroch moznosti, skus to znova: ";
+                    again = true;
+                }
+
+            }
+
+
+
+        }
+        if (i == 9)
+        {
+            cout << q9.questionName << endl;
+            cout << q9.ans1 << endl;
+            cout << q9.ans2 << endl;
+            cout << q9.ans3 << endl;
+            cout << q9.ans4 << endl;
+            cout << "Odpoved: ";
+
+            char answer;
+            bool again = true;
+
+            while (again)
+            {
+                cin >> answer;
+                if (answer == 'A' || answer == 'C' || answer == 'B' || answer == 'D')
+                {
+                    if (answer == q9.corans)
+                    {
+                        cout << "Spravna odpoved, dostavas 500€" << endl;
+                        financie += 500;
+                        count++;
+                        again = false;
+                    }
+                    else
+                    {
+                        cout << "Nespravna Odpoved" << endl;
+                        financie -= 350;
+                        count++;
+                        again = false;
+                    }
+                }
+                else
+                {
+                    cout << "Nezadal si jednu zo styroch moznosti, skus to znova: ";
+                    again = true;
+                }
+
+            }
+
+
+
+        }
+        if (i == 10)
+        {
+            cout << q10.questionName << endl;
+            cout << q10.ans1 << endl;
+            cout << q10.ans2 << endl;
+            cout << q10.ans3 << endl;
+            cout << q10.ans4 << endl;
+            cout << "Odpoved: ";
+
+            char answer;
+            bool again = true;
+
+            while (again)
+            {
+                cin >> answer;
+                if (answer == 'A' || answer == 'C' || answer == 'B' || answer == 'D')
+                {
+                    if (answer == q10.corans)
+                    {
+                        cout << "Spravna odpoved, dostavas 500€" << endl;
+                        financie += 500;
+                        count++;
+                        again = false;
+                    }
+                    else
+                    {
+                        cout << "Nespravna Odpoved" << endl;
+                        financie -= 350;
+                        count++;
+                        again = false;
+                    }
+                }
+                else
+                {
+                    cout << "Nezadal si jednu zo styroch moznosti, skus to znova: ";
+                    again = true;
+                }
+
+            }
+
+
+
+        }
+       
 
     }
 
 
-    //LOADING a VYMAZANIE KONZOLE
-    cout << endl << endl << endl;
-    cout << "LOADING KOLO5 ";
-    for (int i = 0; i < 5; i++)
-    {
-        std::this_thread::sleep_for(0.3s);
-        cout << "-";
+    WriteToFile(financie, name);
+
+    cout << endl <<endl;
+    cout << "---------------Stiskni èokolvek na návrat do Menu---------------";
 
 
-    }
-    system("CLS");
+    _getch();
+    main();
 
-    cout << "Meno Hráèa: " << name << endl;
-    cout << "Vase Body: " << financie << endl << endl;
+    
 
-    //Otazka 10 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
 
 
 
 
 
-
+    
 
 
 
