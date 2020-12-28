@@ -16,5 +16,5 @@ Hra je hratelná ✔\
 -Rekurzívne Funkcie (ešte pridám)\
 
 ## Custom Kritéria:
--OOP Otázky ✔
+-OOP ✔
 
