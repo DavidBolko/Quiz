@@ -81,6 +81,7 @@ void zoznamhracov()
 
     cout << "---------------Stiskni èokolvek na návrat do Menu---------------";
     _getch();
+    system("CLS");
     main();
    
 

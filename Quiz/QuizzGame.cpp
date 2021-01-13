@@ -511,13 +511,16 @@ void QuizzGame()
     }
 
 
+    //Zápis do súboru (skóre a meno)
     WriteToFile(financie, name);
 
+    //Návrat do menu
     cout << endl <<endl;
     cout << "---------------Stiskni èokolvek na návrat do Menu---------------";
 
 
     _getch();
+    system("CLS");
     main();
 
     

@@ -1,1 +1,4 @@
 Karol	4150	Gold
+Lukaç	3300	Gold
+Peter	4150	Gold
+Andrej	5000	Platinum

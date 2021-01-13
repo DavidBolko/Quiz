@@ -24,6 +24,7 @@ void Rules()
 	cout << "-----------Pre návrat stlaète akýkolvek znak------------" << endl;
 
 	_getch();
+	system("CLS");
 	main();
 	
 }
