@@ -13,7 +13,6 @@ Hra je hratelná ✔
 -Úprava - výpis v konzoli + Kód Úprava ✔\
 -Načitanie vstupu zo súbora ✔\
 -Uloženie výstupu do súbora ✔\
--Rekurzívne Funkcie (ešte pridám)
 
 ## Custom Kritéria:
 -OOP ✔
