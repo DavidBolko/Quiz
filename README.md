@@ -12,7 +12,7 @@ Hra je hratelná ✔
 -Náhodne Čisla ✔\
 -Úprava - výpis v konzoli + Kód Úprava ✔\
 -Načitanie vstupu zo súbora ✔\
--Uloženie výstupu do súbora ✔\
+-Uloženie výstupu do súbora ✔
 
 ## Custom Kritéria:
 -OOP ✔
